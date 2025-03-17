@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import prisma from '../config/db.config.js';
 
 class ChatGropController {
-	static async index(req: Request, res: Response) {
+	static async index(req: Request, res: Response): Promise<any> {
 		try {
 			const user = req.user as AuthUser;
 
@@ -23,7 +23,7 @@ class ChatGropController {
 		}
 	}
 
-	static async show(req: Request, res: Response) {
+	static async show(req: Request, res: Response): Promise<any> {
 		try {
 			const { id } = req.params;
 			if (id) {
@@ -42,7 +42,7 @@ class ChatGropController {
 		}
 	}
 
-	static async store(req: Request, res: Response) {
+	static async store(req: Request, res: Response): Promise<any> {
 		try {
 			const body = req.body;
 			const user = req.user as AuthUser;
@@ -60,8 +60,8 @@ class ChatGropController {
 				.json({ message: 'Something went wrong.please try again!' });
 		}
 	}
-    
-	static async update(req: Request, res: Response) {
+
+	static async update(req: Request, res: Response): Promise<any> {
 		try {
 			const { id } = req.params;
 			const body = req.body;
@@ -79,7 +79,7 @@ class ChatGropController {
 				.json({ message: 'Something went wrong.please try again!' });
 		}
 	}
-	static async destroy(req: Request, res: Response) {
+	static async destroy(req: Request, res: Response): Promise<any> {
 		try {
 			const { id } = req.params;
 			if (id) {
@@ -98,3 +98,5 @@ class ChatGropController {
 		}
 	}
 }
+
+export default ChatGropController
