@@ -1,6 +1,19 @@
-import { Server } from 'socket.io';
+import { Server ,Socket} from 'socket.io';
+
+interface SocketWithRoom extends Socket {
+	room: string;
+}
 
 export function setupSocket(io: Server) {
+	io.use((socket, next) => {
+		console.log('Socket Middleware', socket.id);
+		const room = socket.handshake.auth.room;
+		if (!room) {
+			return next(new Error('No room provided'));
+		}
+		(socket as SocketWithRoom).room = room;
+		next();
+	});
 	io.on('connection', (socket) => {
 		console.log('Socket connected', socket.id);
 		socket.on('join', (room) => {

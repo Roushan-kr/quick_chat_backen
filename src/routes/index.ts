@@ -11,7 +11,7 @@ router.post('/auth/login', AuthController.login);
 // chat group routes
 router.post('/chat-group', middleware, ChatGropController.store);
 router.get('/chat-group', middleware, ChatGropController.index);
-router.get('/chat-group/:id', middleware, ChatGropController.index);
+router.get('/chat-group/:id', ChatGropController.index);
 router.put('/chat-group/:id', middleware, ChatGropController.update);
 router.delete('/chat-group/:id', middleware, ChatGropController.destroy);
 
